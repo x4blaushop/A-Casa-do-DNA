@@ -1,16 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>DNA Core v1</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DNA Core</title>
 
-  <!-- DNA :: CONFIG -->
+  <style>
+    /* ===== DNA: UI BÁSICA ===== */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0e0e0e;
+      color: #eaeaea;
+    }
+
+    #app {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      max-width: 600px;
+      padding: 32px;
+      border-radius: 8px;
+      background: #151515;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 28px;
+    }
+
+    p {
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    .meta {
+      margin-top: 24px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== DNA: CONFIG (ÚNICA PARTE QUE MUDA POR CLIENTE) ===== -->
   <script>
     const DNA = {
-      name: "DNA Core",
-      version: "1.0.0",
-      mode: "offline-first",
-      author: "José Patrick",
+      meta: {
+        name: "DNA Core",
+        version: "1.0.0",
+        owner: "Cliente X",
+        createdBy: "José Patrick",
+        createdAt: "2025-12-24"
+      },
+
+      project: {
+        title: "Sistema Soberano do Cliente X",
+        description: "Produto digital estável, offline-first e independente.",
+        mode: "offline-first"
+      },
+
       rules: {
         noExternalDeps: true,
         predictable: true,
@@ -19,4 +75,83 @@
       }
     };
   </script>
-</head>
+
+  <!-- ===== DNA: CORE (NUNCA MUDA) ===== -->
+  <script>
+    const Core = {
+      state: {
+        booted: false
+      },
+
+      boot() {
+        if (this.state.booted) return;
+        this.log("Boot iniciado");
+        this.state.booted = true;
+      },
+
+      assert(condition, message) {
+        if (!condition) {
+          this.error(message);
+          throw new Error(message);
+        }
+      },
+
+      log(message) {
+        console.log("🧬 DNA:", message);
+      },
+
+      error(message) {
+        console.error("⛔ DNA:", message);
+      }
+    };
+  </script>
+
+  <!-- ===== DNA: MODULES (FUNCIONALIDADES) ===== -->
+  <script>
+    const Modules = {
+
+      diagnostics() {
+        console.table(DNA.meta);
+        console.table(DNA.project);
+      },
+
+      ui() {
+        const app = document.getElementById("app");
+        Core.assert(app, "Elemento #app não encontrado");
+
+        app.innerHTML = `
+          <div class="container">
+            <h1>${DNA.project.title}</h1>
+            <p>${DNA.project.description}</p>
+
+            <div class="meta">
+              <div>Versão: ${DNA.meta.version}</div>
+              <div>Proprietário: ${DNA.meta.owner}</div>
+              <div>Criado por: ${DNA.meta.createdBy}</div>
+            </div>
+          </div>
+        `;
+      }
+
+    };
+  </script>
+
+  <!-- ===== DNA: EXEC (SEMPRE IGUAL) ===== -->
+  <script>
+    try {
+      Core.boot();
+      Modules.diagnostics();
+      Modules.ui();
+    } catch (e) {
+      document.body.innerHTML =
+        "<pre style='color:red; padding:20px;'>Falha crítica: " +
+        e.message +
+        "</pre>";
+    }
+  </script>
+
+  <!-- ===== DNA: ROOT ===== -->
+  <div id="app"></div>
+
+</body>
+</html>
