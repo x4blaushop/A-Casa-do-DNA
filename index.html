@@ -2,136 +2,176 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>DNA Core — Casa Ativa</title>
+<title>RankHarvest — Infraestrutura de Performance</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-    body {
-        margin: 0;
-        background: #000;
-        color: #00ff88;
-        font-family: monospace;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
+body {
+    margin: 0;
+    background: #050505;
+    color: #00ff88;
+    font-family: monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
 
-    .container {
-        border: 2px solid #00ff88;
-        padding: 24px;
-        max-width: 420px;
-        width: 100%;
-        text-align: center;
-    }
+.container {
+    border: 2px solid #00ff88;
+    padding: 24px;
+    max-width: 520px;
+    width: 100%;
+}
 
-    .title {
-        font-size: 20px;
-        margin-bottom: 12px;
-    }
+h1 {
+    margin: 0;
+    font-size: 22px;
+}
 
-    .pulse {
-        width: 12px;
-        height: 12px;
-        background: #00ff88;
-        border-radius: 50%;
-        margin: 12px auto;
-        animation: pulse 1.2s infinite;
-    }
+.pulse {
+    width: 10px;
+    height: 10px;
+    background: #00ff88;
+    border-radius: 50%;
+    animation: pulse 1.2s infinite;
+    display: inline-block;
+    margin-right: 6px;
+}
 
-    @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: .3; }
-        100% { opacity: 1; }
-    }
+@keyframes pulse {
+    0% { opacity: 1 }
+    50% { opacity: .3 }
+    100% { opacity: 1 }
+}
 
-    .status {
-        font-size: 14px;
-        margin-top: 12px;
-        line-height: 1.6;
-    }
+.section {
+    margin-top: 16px;
+    font-size: 14px;
+    line-height: 1.6;
+}
 
-    .footer {
-        margin-top: 16px;
-        font-size: 12px;
-        opacity: .8;
-    }
+.module {
+    border-left: 2px solid #00ff88;
+    padding-left: 10px;
+    margin-top: 8px;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 12px;
+    opacity: .7;
+}
 </style>
 </head>
 
 <body>
-
-<div id="app">
-    <!-- Conteúdo entra via JS -->
-</div>
+<div id="app"></div>
 
 <script>
-/* ===============================
-   DNA :: CONFIG
-================================ */
+/* =========================
+   DNA CORE (IMUTÁVEL)
+========================= */
 const DNA = {
-    version: "1.0.0",
+    core: "DNA Core v1",
     mode: "offline-first",
     rules: {
         noExternalDeps: true,
-        predictable: true,
-        failLoud: true
+        failLoud: true,
+        predictable: true
     }
 };
 
-/* ===============================
-   CARRO :: CLIENTE (EXEMPLO)
-   (depois vira Rankharvest)
-================================ */
+/* =========================
+   CARRO — RANKHARVEST
+========================= */
 const Carro = {
-    nome: "DNA CORE ATIVO",
-    slogan: "Infraestrutura estática, previsível e soberana.",
-    status: [
-        "✔ Boot concluído",
-        "✔ Nenhuma dependência externa",
-        "✔ Compatível com GitHub Pages",
-        "✔ Pronto para receber cliente real"
-    ]
-};
-
-/* ===============================
-   MODULES
-================================ */
-const Modules = {
-
-    ui() {
-        const app = document.getElementById("app");
-
-        app.innerHTML = `
-            <div class="container">
-                <div class="title">🧬 ${Carro.nome}</div>
-                <div class="pulse"></div>
-                <div>${Carro.slogan}</div>
-
-                <div class="status">
-                    ${Carro.status.map(s => `<div>${s}</div>`).join("")}
-                </div>
-
-                <div class="footer">
-                    DNA Core v${DNA.version}<br>
-                    Arquitetura minimalista
-                </div>
-            </div>
-        `;
+    marca: "RankHarvest",
+    slogan: "Infraestrutura de SEO, Performance e Soberania Digital",
+    proposta: "Sites rápidos, estáveis e imunes a quedas.",
+    modulosAtivos: {
+        seo: true,
+        performance: true,
+        landing: true,
+        hospedagemSoberana: true
     }
 };
 
-/* ===============================
-   BOOT
-================================ */
-function boot() {
-    console.clear();
-    console.log("🧬 DNA Core iniciado", DNA);
-    Modules.ui();
+/* =========================
+   MÓDULOS PLUGÁVEIS
+========================= */
+const Modulos = {
+
+    seo() {
+        return `
+        <div class="module">
+            🔍 SEO Estrutural<br>
+            HTML limpo, indexável, sem JS bloqueante.
+        </div>`;
+    },
+
+    performance() {
+        return `
+        <div class="module">
+            ⚡ Performance Extrema<br>
+            Zero dependências externas, carregamento instantâneo.
+        </div>`;
+    },
+
+    landing() {
+        return `
+        <div class="module">
+            🎯 Landing de Conversão<br>
+            Estrutura direta, copy clara, foco em ação.
+        </div>`;
+    },
+
+    hospedagemSoberana() {
+        return `
+        <div class="module">
+            🛰️ Hospedagem Soberana<br>
+            GitHub Pages ou infraestrutura dedicada.
+        </div>`;
+    }
+};
+
+/* =========================
+   UI
+========================= */
+function render() {
+    let htmlModulos = "";
+
+    for (let modulo in Carro.modulosAtivos) {
+        if (Carro.modulosAtivos[modulo] && Modulos[modulo]) {
+            htmlModulos += Modulos[modulo]();
+        }
+    }
+
+    document.getElementById("app").innerHTML = `
+        <div class="container">
+            <h1><span class="pulse"></span>${Carro.marca}</h1>
+
+            <div class="section">
+                ${Carro.slogan}
+            </div>
+
+            <div class="section">
+                ${Carro.proposta}
+            </div>
+
+            <div class="section">
+                <strong>Módulos Ativos:</strong>
+                ${htmlModulos}
+            </div>
+
+            <div class="footer">
+                ${DNA.core} • Offline-first • Estável
+            </div>
+        </div>
+    `;
 }
 
-boot();
+render();
 </script>
-
 </body>
 </html>
