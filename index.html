@@ -1,144 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Infraestrutura Digital de Alta Performance</title>
+<meta charset="UTF-8">
+<title>DNA Core — Casa Ativa</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
+<style>
     body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0a0a0a;
-      color: #eaeaea;
-      display: flex;
-      justify-content: center;
+        margin: 0;
+        background: #000;
+        color: #00ff88;
+        font-family: monospace;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
     }
 
     .container {
-      max-width: 900px;
-      padding: 40px 20px;
+        border: 2px solid #00ff88;
+        padding: 24px;
+        max-width: 420px;
+        width: 100%;
+        text-align: center;
     }
 
-    h1 {
-      color: #00ff88;
-      font-size: 2.4rem;
-      margin-bottom: 10px;
+    .title {
+        font-size: 20px;
+        margin-bottom: 12px;
     }
 
-    h2 {
-      margin-top: 40px;
-      color: #00ff88;
+    .pulse {
+        width: 12px;
+        height: 12px;
+        background: #00ff88;
+        border-radius: 50%;
+        margin: 12px auto;
+        animation: pulse 1.2s infinite;
     }
 
-    p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      opacity: 0.9;
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: .3; }
+        100% { opacity: 1; }
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    ul li {
-      padding: 8px 0;
-      border-bottom: 1px solid #1e1e1e;
-    }
-
-    .highlight {
-      background: #111;
-      border-left: 4px solid #00ff88;
-      padding: 20px;
-      margin: 30px 0;
-    }
-
-    .cta {
-      margin-top: 40px;
-      padding: 20px;
-      text-align: center;
-      background: #111;
-      border: 1px solid #00ff88;
-    }
-
-    .cta a {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 14px 28px;
-      background: #00ff88;
-      color: #000;
-      font-weight: bold;
-      text-decoration: none;
-      border-radius: 4px;
+    .status {
+        font-size: 14px;
+        margin-top: 12px;
+        line-height: 1.6;
     }
 
     .footer {
-      margin-top: 60px;
-      text-align: center;
-      font-size: 0.9rem;
-      opacity: 0.6;
+        margin-top: 16px;
+        font-size: 12px;
+        opacity: .8;
     }
-  </style>
+</style>
 </head>
 
 <body>
-  <div class="container">
 
-    <h1>Infraestrutura Digital Rápida, Estável e Independente</h1>
-    <p>
-      Criamos sistemas web de alta performance, pensados para durar,
-      funcionar em qualquer ambiente e não depender de servidores caros
-      ou frágeis.
-    </p>
+<div id="app">
+    <!-- Conteúdo entra via JS -->
+</div>
 
-    <div class="highlight">
-      <p>
-        ⚡ Carregamento extremamente rápido<br>
-        🛡️ Estável, previsível e seguro<br>
-        🌐 Funciona online ou offline<br>
-        🚫 Zero dependência de plataformas externas
-      </p>
-    </div>
+<script>
+/* ===============================
+   DNA :: CONFIG
+================================ */
+const DNA = {
+    version: "1.0.0",
+    mode: "offline-first",
+    rules: {
+        noExternalDeps: true,
+        predictable: true,
+        failLoud: true
+    }
+};
 
-    <h2>O que você ganha</h2>
-    <ul>
-      <li>✔️ Site ou sistema que não cai</li>
-      <li>✔️ Performance superior mesmo em máquinas antigas</li>
-      <li>✔️ Estrutura simples, fácil de manter</li>
-      <li>✔️ Liberdade total de hospedagem</li>
-    </ul>
+/* ===============================
+   CARRO :: CLIENTE (EXEMPLO)
+   (depois vira Rankharvest)
+================================ */
+const Carro = {
+    nome: "DNA CORE ATIVO",
+    slogan: "Infraestrutura estática, previsível e soberana.",
+    status: [
+        "✔ Boot concluído",
+        "✔ Nenhuma dependência externa",
+        "✔ Compatível com GitHub Pages",
+        "✔ Pronto para receber cliente real"
+    ]
+};
 
-    <h2>Para quem é</h2>
-    <p>
-      Empresas, projetos e profissionais que precisam de
-      presença digital confiável, sem surpresas, sem custos ocultos
-      e sem dependência de terceiros.
-    </p>
+/* ===============================
+   MODULES
+================================ */
+const Modules = {
 
-    <h2>Entrega</h2>
-    <ul>
-      <li>✔️ Sistema pronto e funcional</li>
-      <li>✔️ Código claro e auditável</li>
-      <li>✔️ Implantação rápida</li>
-      <li>✔️ Suporte na ativação</li>
-    </ul>
+    ui() {
+        const app = document.getElementById("app");
 
-    <div class="cta">
-      <h2>Quer aplicar isso no seu projeto?</h2>
-      <p>
-        Fale diretamente comigo e avaliamos a melhor solução
-        para o seu caso.
-      </p>
-      <a href="https://wa.me/5511978682202" target="_blank">
-        Falar no WhatsApp
-      </a>
-    </div>
+        app.innerHTML = `
+            <div class="container">
+                <div class="title">🧬 ${Carro.nome}</div>
+                <div class="pulse"></div>
+                <div>${Carro.slogan}</div>
 
-    <div class="footer">
-      © 2025 — Infraestrutura Digital Independente
-    </div>
+                <div class="status">
+                    ${Carro.status.map(s => `<div>${s}</div>`).join("")}
+                </div>
 
-  </div>
+                <div class="footer">
+                    DNA Core v${DNA.version}<br>
+                    Arquitetura minimalista
+                </div>
+            </div>
+        `;
+    }
+};
+
+/* ===============================
+   BOOT
+================================ */
+function boot() {
+    console.clear();
+    console.log("🧬 DNA Core iniciado", DNA);
+    Modules.ui();
+}
+
+boot();
+</script>
+
 </body>
 </html>
