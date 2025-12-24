@@ -1,1 +1,20 @@
+<!-- DNA :: MODULES -->
+  <script>
+    const Modules = {
 
+      ui() {
+        const root = document.getElementById("app");
+        if (!root) Core.halt("Elemento #app não encontrado");
+
+        root.innerHTML = `
+          <h1>DNA Core ativo</h1>
+          <p>Sistema estável e previsível.</p>
+        `;
+      },
+
+      diagnostics() {
+        console.table(DNA);
+      }
+
+    };
+  </script>
