@@ -2,27 +2,81 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>DNA Core v1</title>
+  <title>A Casa do DNA</title>
 
   <style>
+    /* ===== DNA: VISUAL ===== */
     body {
       margin: 0;
-      font-family: monospace;
-      background: #0e0e0e;
+      background: #000;
       color: #00ff88;
+      font-family: monospace;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+      border: 1px solid #00ff88;
+      padding: 24px;
+      width: 90%;
+      max-width: 420px;
+    }
+
+    .title {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .status {
+      font-size: 14px;
+      margin-top: 8px;
+      opacity: 0.8;
+    }
+
+    .pulse {
+      margin: 20px auto;
+      width: 14px;
+      height: 14px;
+      background: #00ff88;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.6); opacity: 0.4; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .footer {
+      margin-top: 16px;
+      font-size: 11px;
+      opacity: 0.6;
     }
   </style>
 </head>
 
 <body>
 
-  <div id="app">Inicializando DNA...</div>
+  <div class="container">
+    <div class="title">🧬 DNA CORE</div>
 
-  <!-- DNA: CONFIG -->
+    <div class="pulse"></div>
+
+    <div id="output">Inicializando...</div>
+
+    <div class="status" id="status"></div>
+
+    <div class="footer">
+      Sistema monolítico consciente<br>
+      Porta única · Sem dependências
+    </div>
+  </div>
+
+  <!-- ===== DNA: CONFIG ===== -->
   <script>
     const DNA = {
       name: "DNA Core",
@@ -32,26 +86,31 @@
         noExternalDeps: true,
         predictable: true,
         failLoud: true
-      }
+      },
+      state: "booting"
     };
   </script>
 
-  <!-- DNA: CORE -->
+  <!-- ===== DNA: CORE ===== -->
   <script>
     function boot() {
-      const app = document.getElementById("app");
+      DNA.state = "active";
 
-      app.innerText = `
-${DNA.name}
-Versão: ${DNA.version}
-Modo: ${DNA.mode}
+      const output = document.getElementById("output");
+      const status = document.getElementById("status");
 
-Status: ATIVO
-      `;
+      output.innerText = "DNA ATIVO";
+      status.innerText = `
+versão: ${DNA.version}
+modo: ${DNA.mode}
+estado: ${DNA.state}
+      `.trim();
+
+      console.log("🧬 DNA iniciado:", DNA);
     }
   </script>
 
-  <!-- DNA: EXEC -->
+  <!-- ===== DNA: EXEC ===== -->
   <script>
     boot();
   </script>
