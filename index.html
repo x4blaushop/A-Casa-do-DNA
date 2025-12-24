@@ -1,22 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>DNA Core v1.0 | Elite</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body { margin: 0; background: #000; color: #00ff88; font-family: monospace; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+    .container { width: 90%; max-width: 480px; border: 1px solid #00ff88; padding: 20px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.2); }
+    .title { font-size: 22px; margin-bottom: 10px; border-bottom: 1px solid #00ff88; padding-bottom: 5px; }
+    .status { font-size: 13px; opacity: 0.8; margin-bottom: 20px; color: #fff; }
+    .price-tag { background: #00ff88; color: #000; padding: 2px 6px; font-weight: bold; font-size: 12px; border-radius: 3px; }
+    ul { padding-left: 18px; margin: 15px 0; }
+    li { margin-bottom: 8px; font-size: 14px; }
+    button { width: 100%; margin-top: 10px; padding: 12px; background: transparent; color: #00ff88; border: 1px solid #00ff88; font-family: monospace; cursor: pointer; transition: 0.3s; }
+    button:hover { background: #00ff88; color: #000; }
+    .footer { margin-top: 25px; font-size: 10px; opacity: 0.5; text-align: center; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="container" id="app">
+    <div class="title">🧬 DNA Core</div>
+    <div class="status">Sincronizando Matriz...</div>
+</div>
+
+<script>
 /* ==========================
-   DNA :: CLIENTE (O CARRO - RANKHARVEST)
-   Mapeamento de SEO e Alta Performance
+   DNA :: CLIENTE (RANKHARVEST ELITE)
 ========================== */
 const Carro = {
-    cliente: {
-        nome: "RankHarvest :: Infraestrutura de Elite",
-        slogan: "Soberania Digital: Velocidade Real e Estabilidade Monolítica.",
-        whatsapp: "5511999999999" // Seu contato para fechar os R$ 10k
+    info: {
+        nome: "RankHarvest :: Elite",
+        slogan: "Infraestrutura Monolítica de Alta Performance",
+        whatsapp: "5511978682202"
     },
     servicos: [
-        "SEO Técnico: Carregamento Instantâneo (LCP < 1.2s)",
-        "Arquitetura Offline-First: Zero dependência de servidores lentos [cite: 2025-12-24]",
-        "Local SEO & Business Listings: Estratégia de Super-Circles",
-        "Segurança Máxima: Sistema estático imune a ataques de banco de dados [cite: 2025-12-23]"
+        "SEO Técnico: Carregamento < 1.2s",
+        "Soberania: Zero dependência de servidores [cite: 2025-12-24]",
+        "Estabilidade: Imune a ataques de banco de dados [cite: 2025-12-23]",
+        "Entrega: Ciclo de 72h para Elite"
     ],
-    proposta: {
-        valor: "R$ 10.000,00",
-        entrega: "24 a 72 Horas",
-        suporte: "Soberano 24/7"
+    precos: [
+        { nome: "Essencial", valor: "R$ 1.500" },
+        { nome: "Soberano", valor: "R$ 5.000" },
+        { nome: "Elite SEO", valor: "R$ 10.000" }
+    ]
+};
+
+const Modules = {
+    ui() {
+        const app = document.getElementById("app");
+        app.innerHTML = `
+            <div class="title">🧬 ${Carro.info.nome}</div>
+            <div class="status">${Carro.info.slogan}</div>
+
+            <strong>Diferenciais Técnicos:</strong>
+            <ul>
+                ${Carro.servicos.map(s => `<li>• ${s}</li>`).join("")}
+            </ul>
+
+            <strong>Tabela de Investimento:</strong>
+            <div style="margin-top:10px;">
+                ${Carro.precos.map(p => `
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:13px;">
+                        <span>${p.nome}</span>
+                        <span class="price-tag">${p.valor}</span>
+                    </div>
+                `).join("")}
+            </div>
+
+            <button onclick="Modules.contato()">Solicitar Ativação de DNA</button>
+
+            <div class="footer">
+                DNA Core v1.0.0 [cite: 2025-12-24]<br>
+                Propriedade Intelectual: José Patrick<br>
+                SISTEMA OPERACIONAL ZERO ERROS [cite: 2025-12-23]
+            </div>
+        `;
+    },
+    contato() {
+        window.open(\`https://wa.me/\${Carro.info.whatsapp}?text=Desejo+ativar+o+DNA+Elite\`, "_blank");
     }
 };
+
+// BOOT SEGURO
+window.onload = () => {
+    console.log("DNA Core Ativado: Silêncio no Console [cite: 2025-12-23]");
+    Modules.ui();
+};
+</script>
+</body>
+</html>
