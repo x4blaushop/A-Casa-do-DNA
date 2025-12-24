@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>DNA Core v1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
     body {
@@ -13,130 +14,163 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
     }
 
     .container {
-        border: 2px solid #00ff88;
-        padding: 24px;
-        width: 320px;
-        text-align: center;
+        width: 90%;
+        max-width: 480px;
+        border: 1px solid #00ff88;
+        padding: 20px;
     }
 
     .title {
-        font-size: 18px;
+        font-size: 20px;
         margin-bottom: 10px;
     }
 
-    .pulse {
-        width: 14px;
-        height: 14px;
-        border-radius: 50%;
-        margin: 10px auto;
-        animation: pulse 1.5s infinite;
-    }
-
-    @keyframes pulse {
-        0% { opacity: 0.2; }
-        50% { opacity: 1; }
-        100% { opacity: 0.2; }
+    .status {
+        font-size: 14px;
+        opacity: 0.9;
+        margin-bottom: 20px;
     }
 
     ul {
-        list-style: none;
-        padding: 0;
-        margin: 12px 0;
-        font-size: 13px;
+        padding-left: 18px;
+    }
+
+    li {
+        margin-bottom: 6px;
+    }
+
+    input, button {
+        width: 100%;
+        margin-top: 8px;
+        padding: 8px;
+        background: #000;
+        color: #00ff88;
+        border: 1px solid #00ff88;
+        font-family: monospace;
+    }
+
+    button {
+        cursor: pointer;
     }
 
     .footer {
-        font-size: 11px;
-        margin-top: 16px;
+        margin-top: 20px;
+        font-size: 12px;
         opacity: 0.7;
-    }
-
-    a {
-        text-decoration: none;
+        text-align: center;
     }
 </style>
 </head>
 
 <body>
 
-<div id="app"></div>
+<div class="container" id="app">
+    <div class="title">🧬 DNA Core</div>
+    <div class="status">Inicializando...</div>
+</div>
 
 <script>
-/* =========================
-   DNA :: CLIENT_DATA (CARRO)
-   ========================= */
-
+/* ==========================
+   DNA :: CLIENTE (O CARRO)
+========================== */
 const Carro = {
     cliente: {
-        nome: "EMPRESA EXECUTIVA X",
-        slogan: "Soberania e Estabilidade Digital",
-        whatsapp: "5511999999999",
-        corPrincipal: "#00ff88"
+        nome: "DNA Soberano",
+        slogan: "Infraestrutura simples, estável e independente",
+        whatsapp: "5511999999999"
     },
     servicos: [
-        "Sistema Offline-First",
-        "Alta Performance Estática",
-        "Infraestrutura Independente"
+        "Sites Offline-First",
+        "Sistemas Estáticos de Alta Estabilidade",
+        "Deploy sem Servidor",
+        "Compatível com Máquinas Antigas"
     ]
 };
 
-/* =========================
-   DNA :: CORE CONFIG
-   ========================= */
-
+/* ==========================
+   DNA :: CONFIG (O MOTOR)
+========================== */
 const DNA = {
-    version: "1.1.0",
-    mode: "monolithic",
+    version: "1.0.0",
     rules: {
         noExternalDeps: true,
-        predictable: true,
-        failLoud: true
+        failLoud: true,
+        predictable: true
     }
 };
 
-/* =========================
-   DNA :: MODULES
-   ========================= */
-
+/* ==========================
+   MODULES
+========================== */
 const Modules = {
 
     ui() {
         const app = document.getElementById("app");
 
         app.innerHTML = `
-            <div class="container" style="border-color:${Carro.cliente.corPrincipal}">
-                <div class="title">🧬 ${Carro.cliente.nome}</div>
+            <div class="title">🧬 ${Carro.cliente.nome}</div>
+            <div class="status">${Carro.cliente.slogan}</div>
 
-                <div class="pulse" style="background:${Carro.cliente.corPrincipal}"></div>
+            <strong>Serviços:</strong>
+            <ul>
+                ${Carro.servicos.map(s => `<li>${s}</li>`).join("")}
+            </ul>
 
-                <div>${Carro.cliente.slogan}</div>
+            <strong>Contato rápido:</strong>
+            <button onclick="Modules.whatsapp()">Falar no WhatsApp</button>
 
-                <ul>
-                    ${Carro.servicos.map(s => `<li>• ${s}</li>`).join("")}
-                </ul>
+            <strong>Receber proposta:</strong>
+            <input id="leadNome" placeholder="Seu nome">
+            <input id="leadContato" placeholder="WhatsApp ou Email">
+            <button onclick="Modules.lead()">Enviar</button>
 
-                <div class="footer">
-                    DNA Core v1 — José Patrick<br>
-                    <a href="https://wa.me/${Carro.cliente.whatsapp}" 
-                       style="color:${Carro.cliente.corPrincipal}">
-                       Contato direto
-                    </a>
-                </div>
+            <div class="footer">
+                DNA Core v${DNA.version}<br>
+                Sistema offline, sem servidor
             </div>
         `;
+    },
+
+    whatsapp() {
+        const url = `https://wa.me/${Carro.cliente.whatsapp}`;
+        window.open(url, "_blank");
+    },
+
+    lead() {
+        const nome = document.getElementById("leadNome").value;
+        const contato = document.getElementById("leadContato").value;
+
+        if (!nome || !contato) {
+            alert("Preencha os campos");
+            return;
+        }
+
+        const leads = JSON.parse(localStorage.getItem("DNA_LEADS") || "[]");
+
+        leads.push({
+            nome,
+            contato,
+            data: new Date().toISOString()
+        });
+
+        localStorage.setItem("DNA_LEADS", JSON.stringify(leads));
+
+        alert("Lead salvo localmente (offline).");
+
+        document.getElementById("leadNome").value = "";
+        document.getElementById("leadContato").value = "";
     }
 };
 
-/* =========================
-   DNA :: BOOT
-   ========================= */
-
+/* ==========================
+   BOOT
+========================== */
 function boot() {
-    console.log("DNA ativo:", DNA.version);
+    console.log("DNA ativo", DNA);
     Modules.ui();
 }
 
