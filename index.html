@@ -1,181 +1,22 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>DNA Core v1</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<style>
-    body {
-        margin: 0;
-        background: #000;
-        color: #00ff88;
-        font-family: monospace;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-
-    .container {
-        width: 90%;
-        max-width: 480px;
-        border: 1px solid #00ff88;
-        padding: 20px;
-    }
-
-    .title {
-        font-size: 20px;
-        margin-bottom: 10px;
-    }
-
-    .status {
-        font-size: 14px;
-        opacity: 0.9;
-        margin-bottom: 20px;
-    }
-
-    ul {
-        padding-left: 18px;
-    }
-
-    li {
-        margin-bottom: 6px;
-    }
-
-    input, button {
-        width: 100%;
-        margin-top: 8px;
-        padding: 8px;
-        background: #000;
-        color: #00ff88;
-        border: 1px solid #00ff88;
-        font-family: monospace;
-    }
-
-    button {
-        cursor: pointer;
-    }
-
-    .footer {
-        margin-top: 20px;
-        font-size: 12px;
-        opacity: 0.7;
-        text-align: center;
-    }
-</style>
-</head>
-
-<body>
-
-<div class="container" id="app">
-    <div class="title">🧬 DNA Core</div>
-    <div class="status">Inicializando...</div>
-</div>
-
-<script>
 /* ==========================
-   DNA :: CLIENTE (O CARRO)
+   DNA :: CLIENTE (O CARRO - RANKHARVEST)
+   Mapeamento de SEO e Alta Performance
 ========================== */
 const Carro = {
     cliente: {
-        nome: "DNA Soberano",
-        slogan: "Infraestrutura simples, estável e independente",
-        whatsapp: "5511999999999"
+        nome: "RankHarvest :: Infraestrutura de Elite",
+        slogan: "Soberania Digital: Velocidade Real e Estabilidade Monolítica.",
+        whatsapp: "5511999999999" // Seu contato para fechar os R$ 10k
     },
     servicos: [
-        "Sites Offline-First",
-        "Sistemas Estáticos de Alta Estabilidade",
-        "Deploy sem Servidor",
-        "Compatível com Máquinas Antigas"
-    ]
-};
-
-/* ==========================
-   DNA :: CONFIG (O MOTOR)
-========================== */
-const DNA = {
-    version: "1.0.0",
-    rules: {
-        noExternalDeps: true,
-        failLoud: true,
-        predictable: true
+        "SEO Técnico: Carregamento Instantâneo (LCP < 1.2s)",
+        "Arquitetura Offline-First: Zero dependência de servidores lentos [cite: 2025-12-24]",
+        "Local SEO & Business Listings: Estratégia de Super-Circles",
+        "Segurança Máxima: Sistema estático imune a ataques de banco de dados [cite: 2025-12-23]"
+    ],
+    proposta: {
+        valor: "R$ 10.000,00",
+        entrega: "24 a 72 Horas",
+        suporte: "Soberano 24/7"
     }
 };
-
-/* ==========================
-   MODULES
-========================== */
-const Modules = {
-
-    ui() {
-        const app = document.getElementById("app");
-
-        app.innerHTML = `
-            <div class="title">🧬 ${Carro.cliente.nome}</div>
-            <div class="status">${Carro.cliente.slogan}</div>
-
-            <strong>Serviços:</strong>
-            <ul>
-                ${Carro.servicos.map(s => `<li>${s}</li>`).join("")}
-            </ul>
-
-            <strong>Contato rápido:</strong>
-            <button onclick="Modules.whatsapp()">Falar no WhatsApp</button>
-
-            <strong>Receber proposta:</strong>
-            <input id="leadNome" placeholder="Seu nome">
-            <input id="leadContato" placeholder="WhatsApp ou Email">
-            <button onclick="Modules.lead()">Enviar</button>
-
-            <div class="footer">
-                DNA Core v${DNA.version}<br>
-                Sistema offline, sem servidor
-            </div>
-        `;
-    },
-
-    whatsapp() {
-        const url = `https://wa.me/${Carro.cliente.whatsapp}`;
-        window.open(url, "_blank");
-    },
-
-    lead() {
-        const nome = document.getElementById("leadNome").value;
-        const contato = document.getElementById("leadContato").value;
-
-        if (!nome || !contato) {
-            alert("Preencha os campos");
-            return;
-        }
-
-        const leads = JSON.parse(localStorage.getItem("DNA_LEADS") || "[]");
-
-        leads.push({
-            nome,
-            contato,
-            data: new Date().toISOString()
-        });
-
-        localStorage.setItem("DNA_LEADS", JSON.stringify(leads));
-
-        alert("Lead salvo localmente (offline).");
-
-        document.getElementById("leadNome").value = "";
-        document.getElementById("leadContato").value = "";
-    }
-};
-
-/* ==========================
-   BOOT
-========================== */
-function boot() {
-    console.log("DNA ativo", DNA);
-    Modules.ui();
-}
-
-boot();
-</script>
-
-</body>
-</html>
