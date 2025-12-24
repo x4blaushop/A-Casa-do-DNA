@@ -1,94 +1,144 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>DNA Core v1.0 | Elite</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Infraestrutura Digital de Alta Performance</title>
 
-<style>
-    body { margin: 0; background: #000; color: #00ff88; font-family: monospace; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-    .container { width: 90%; max-width: 480px; border: 1px solid #00ff88; padding: 20px; box-shadow: 0 0 15px rgba(0, 255, 136, 0.2); }
-    .title { font-size: 22px; margin-bottom: 10px; border-bottom: 1px solid #00ff88; padding-bottom: 5px; }
-    .status { font-size: 13px; opacity: 0.8; margin-bottom: 20px; color: #fff; }
-    .price-tag { background: #00ff88; color: #000; padding: 2px 6px; font-weight: bold; font-size: 12px; border-radius: 3px; }
-    ul { padding-left: 18px; margin: 15px 0; }
-    li { margin-bottom: 8px; font-size: 14px; }
-    button { width: 100%; margin-top: 10px; padding: 12px; background: transparent; color: #00ff88; border: 1px solid #00ff88; font-family: monospace; cursor: pointer; transition: 0.3s; }
-    button:hover { background: #00ff88; color: #000; }
-    .footer { margin-top: 25px; font-size: 10px; opacity: 0.5; text-align: center; line-height: 1.5; }
-</style>
-</head>
-<body>
-
-<div class="container" id="app">
-    <div class="title">🧬 DNA Core</div>
-    <div class="status">Sincronizando Matriz...</div>
-</div>
-
-<script>
-/* ==========================
-   DNA :: CLIENTE (RANKHARVEST ELITE)
-========================== */
-const Carro = {
-    info: {
-        nome: "RankHarvest :: Elite",
-        slogan: "Infraestrutura Monolítica de Alta Performance",
-        whatsapp: "5511978682202"
-    },
-    servicos: [
-        "SEO Técnico: Carregamento < 1.2s",
-        "Soberania: Zero dependência de servidores [cite: 2025-12-24]",
-        "Estabilidade: Imune a ataques de banco de dados [cite: 2025-12-23]",
-        "Entrega: Ciclo de 72h para Elite"
-    ],
-    precos: [
-        { nome: "Essencial", valor: "R$ 1.500" },
-        { nome: "Soberano", valor: "R$ 5.000" },
-        { nome: "Elite SEO", valor: "R$ 10.000" }
-    ]
-};
-
-const Modules = {
-    ui() {
-        const app = document.getElementById("app");
-        app.innerHTML = `
-            <div class="title">🧬 ${Carro.info.nome}</div>
-            <div class="status">${Carro.info.slogan}</div>
-
-            <strong>Diferenciais Técnicos:</strong>
-            <ul>
-                ${Carro.servicos.map(s => `<li>• ${s}</li>`).join("")}
-            </ul>
-
-            <strong>Tabela de Investimento:</strong>
-            <div style="margin-top:10px;">
-                ${Carro.precos.map(p => `
-                    <div style="display:flex; justify-content:space-between; margin-bottom:5px; font-size:13px;">
-                        <span>${p.nome}</span>
-                        <span class="price-tag">${p.valor}</span>
-                    </div>
-                `).join("")}
-            </div>
-
-            <button onclick="Modules.contato()">Solicitar Ativação de DNA</button>
-
-            <div class="footer">
-                DNA Core v1.0.0 [cite: 2025-12-24]<br>
-                Propriedade Intelectual: José Patrick<br>
-                SISTEMA OPERACIONAL ZERO ERROS [cite: 2025-12-23]
-            </div>
-        `;
-    },
-    contato() {
-        window.open(\`https://wa.me/\${Carro.info.whatsapp}?text=Desejo+ativar+o+DNA+Elite\`, "_blank");
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0a0a0a;
+      color: #eaeaea;
+      display: flex;
+      justify-content: center;
     }
-};
 
-// BOOT SEGURO
-window.onload = () => {
-    console.log("DNA Core Ativado: Silêncio no Console [cite: 2025-12-23]");
-    Modules.ui();
-};
-</script>
+    .container {
+      max-width: 900px;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      color: #00ff88;
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #00ff88;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      opacity: 0.9;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      padding: 8px 0;
+      border-bottom: 1px solid #1e1e1e;
+    }
+
+    .highlight {
+      background: #111;
+      border-left: 4px solid #00ff88;
+      padding: 20px;
+      margin: 30px 0;
+    }
+
+    .cta {
+      margin-top: 40px;
+      padding: 20px;
+      text-align: center;
+      background: #111;
+      border: 1px solid #00ff88;
+    }
+
+    .cta a {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 14px 28px;
+      background: #00ff88;
+      color: #000;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+
+    .footer {
+      margin-top: 60px;
+      text-align: center;
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+    <h1>Infraestrutura Digital Rápida, Estável e Independente</h1>
+    <p>
+      Criamos sistemas web de alta performance, pensados para durar,
+      funcionar em qualquer ambiente e não depender de servidores caros
+      ou frágeis.
+    </p>
+
+    <div class="highlight">
+      <p>
+        ⚡ Carregamento extremamente rápido<br>
+        🛡️ Estável, previsível e seguro<br>
+        🌐 Funciona online ou offline<br>
+        🚫 Zero dependência de plataformas externas
+      </p>
+    </div>
+
+    <h2>O que você ganha</h2>
+    <ul>
+      <li>✔️ Site ou sistema que não cai</li>
+      <li>✔️ Performance superior mesmo em máquinas antigas</li>
+      <li>✔️ Estrutura simples, fácil de manter</li>
+      <li>✔️ Liberdade total de hospedagem</li>
+    </ul>
+
+    <h2>Para quem é</h2>
+    <p>
+      Empresas, projetos e profissionais que precisam de
+      presença digital confiável, sem surpresas, sem custos ocultos
+      e sem dependência de terceiros.
+    </p>
+
+    <h2>Entrega</h2>
+    <ul>
+      <li>✔️ Sistema pronto e funcional</li>
+      <li>✔️ Código claro e auditável</li>
+      <li>✔️ Implantação rápida</li>
+      <li>✔️ Suporte na ativação</li>
+    </ul>
+
+    <div class="cta">
+      <h2>Quer aplicar isso no seu projeto?</h2>
+      <p>
+        Fale diretamente comigo e avaliamos a melhor solução
+        para o seu caso.
+      </p>
+      <a href="https://wa.me/5511978682202" target="_blank">
+        Falar no WhatsApp
+      </a>
+    </div>
+
+    <div class="footer">
+      © 2025 — Infraestrutura Digital Independente
+    </div>
+
+  </div>
 </body>
 </html>
