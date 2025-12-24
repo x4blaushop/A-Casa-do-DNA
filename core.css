@@ -1,1 +1,25 @@
+<body>
 
+  <!-- DNA :: CORE -->
+  <script>
+    const Core = {
+      state: {
+        booted: false
+      },
+
+      boot() {
+        if (this.state.booted) {
+          console.warn("DNA já inicializado.");
+          return;
+        }
+
+        console.log("🧬 Iniciando", DNA.name, "v", DNA.version);
+        this.state.booted = true;
+      },
+
+      halt(reason) {
+        console.error("⛔ Sistema interrompido:", reason);
+        throw new Error(reason);
+      }
+    };
+  </script>
