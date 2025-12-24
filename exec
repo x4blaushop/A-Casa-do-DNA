@@ -1,0 +1,15 @@
+<!-- DNA :: EXEC -->
+  <script>
+    try {
+      Core.boot();
+      Modules.diagnostics();
+      Modules.ui();
+    } catch (e) {
+      console.error("Falha crítica:", e.message);
+    }
+  </script>
+
+  <div id="app"></div>
+
+</body>
+</html>
